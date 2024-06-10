@@ -6,12 +6,6 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -34,3 +28,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+##　このサイトを参考にしている
+ico 作成
+https://www.aconvert.com/jp/icon/svg-to-ico/
+https://favicon-generator.mintsu-dev.com/
+
+## 制作時メモ
+
+誰のものか分からないwebアプリでファイルアップロードを避けるため制作。
+サクッと作るため、jsxで対応
+使い捨てのため、単機能とする。
+必要ならフォームに入れた値のサイズで、icoファイルを作れる機能追加
+
+ベクター画像化もできたら同じ構成で別アプリで作るのはあり
+
+https://ja.vectormagic.com/
+
+https://vectorizer.com/ja/#google_vignette
+
+https://www.vectorizer.io/
+
+https://convertio.co/ja/
