@@ -10,7 +10,6 @@
     "format": "prettier --write **/*.{js,jsx,json,css,scss,md,mjs,ts,tsx,html}"
   },
   "dependencies": {
-    "canvas-toBlob": "^1.0.0",
     "file-saver": "^2.0.5",
     "next": "^14.2.3",
     "react": "^18.3.1",

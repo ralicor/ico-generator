@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import { saveAs } from "file-saver";
-import "canvas-toBlob";
 import styles from "./component.module.scss";
 
 const IconGenerator = () => {
@@ -16,7 +15,7 @@ const IconGenerator = () => {
   const handleSizeChange = (e) => {
     const size = parseInt(e.target.value, 10);
     setSelectedSizes((prev) =>
-      e.target.checked ? [...prev, size] : prev.filter((s) => s !== size),
+      e.target.checked ? [...prev, size] : prev.filter((s) => s !== size)
     );
   };
 
@@ -27,7 +26,7 @@ const IconGenerator = () => {
     }
 
     const images = await Promise.all(
-      selectedSizes.map((size) => createResizedImage(file, size)),
+      selectedSizes.map((size) => createResizedImage(file, size))
     );
 
     const icoBlob = createIcoBlob(images);
