@@ -38,10 +38,13 @@ GitHub Actionsを使用して自動的にデプロイされます。main ブラ�
 
 ## 制作時メモ
 
-###　このサイトを参考にしている
-ico 作成
-https://www.aconvert.com/jp/icon/svg-to-ico/
-https://favicon-generator.mintsu-dev.com/
+参考用
+
+### このサイトを参考にしている
+
+- ico 作成
+  - https://www.aconvert.com/jp/icon/svg-to-ico/
+  - https://favicon-generator.mintsu-dev.com/
 
 誰のものか分からないwebアプリでファイルアップロードを避けるため制作。
 サクッと作るため、jsxで対応
@@ -74,6 +77,7 @@ https://convertio.co/ja/
 ### 環境変数について
 
 github actions用の環境変数は以下だったが、現在利用なし
+
 https://github.com/ralicor/ico-generator/settings/secrets/actions
 
 ### フォルダとファイルの説明
