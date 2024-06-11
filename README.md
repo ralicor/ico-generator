@@ -60,12 +60,16 @@ https://pages.github.com/
 
 GitHub Actionsを用いてmainにPUSHした際の/out/配下を静的webアプリとしてデプロイする
 
+公開リポジトリでないとGitHub Pagesの無料枠でデプロイできないため、公開リポジトリとする。
+
 npm run lint
 npm run format
 npm run build
 後にCOMMIT,PUSH
 
+(GitHub Actions内でbuildするが、上記コマンドが通ることは事前に確認する)
+
 ### 環境変数について
 
-github actions用の環境変数は以下
+github actions用の環境変数は以下だったが、現在利用なし
 https://github.com/ralicor/ico-generator/settings/secrets/actions
