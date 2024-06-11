@@ -50,3 +50,22 @@ https://vectorizer.com/ja/#google_vignette
 https://www.vectorizer.io/
 
 https://convertio.co/ja/
+
+### デプロイ環境について
+
+GitHub Pagesを利用する
+https://pages.github.com/
+
+楽にデプロイしたいため、vercelでデプロイしたいが、GitHubの組織を利用していると無料枠でデプロイできないため。
+
+GitHub Actionsを用いてmainにPUSHした際の/out/配下を静的webアプリとしてデプロイする
+
+npm run lint
+npm run format
+npm run build
+後にCOMMIT,PUSH
+
+### 環境変数について
+
+github actions用の環境変数は以下
+https://github.com/ralicor/ico-generator/settings/secrets/actions
