@@ -6,8 +6,8 @@ import styles from "./component.module.scss";
 
 const IconGenerator = () => {
   const [file, setFile] = useState(null);
-  const [selectedSizes, setSelectedSizes] = useState([]);
   const sizes = [16, 24, 32, 48, 64, 72, 80, 96, 128, 256];
+  const [selectedSizes, setSelectedSizes] = useState(sizes);
 
   const handleFileChange = (e) => {
     setFile(e.target.files?.[0] || null);
@@ -138,7 +138,12 @@ const IconGenerator = () => {
       <div className={styles.checkboxContainer}>
         {sizes.map((size) => (
           <label key={size} className={styles.checkboxLabel}>
-            <input type="checkbox" value={size} onChange={handleSizeChange} />
+            <input
+              type="checkbox"
+              value={size}
+              checked={selectedSizes.includes(size)}
+              onChange={handleSizeChange}
+            />
             {size}x{size}
           </label>
         ))}
