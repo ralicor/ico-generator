@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import styles from "./component.module.scss";
 
@@ -9,7 +10,7 @@ const IconGenerator = () => {
   const sizes = [16, 24, 32, 48, 64, 72, 80, 96, 128, 256];
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    setFile(e.target.files?.[0] || null);
   };
 
   const handleSizeChange = (e) => {
@@ -19,18 +20,59 @@ const IconGenerator = () => {
     );
   };
 
-  const generateIco = async () => {
-    if (!file || selectedSizes.length === 0) {
-      alert("Please select a file and at least one size.");
+  const generateAssets = async () => {
+    if (!file) {
+      alert("Please select a file.");
       return;
     }
 
-    const images = await Promise.all(
+    const zip = new JSZip();
+    const folder = zip.folder("icons");
+
+    // ユーザー選択のサイズで.ico生成
+    const baseImages = await Promise.all(
       selectedSizes.map((size) => createResizedImage(file, size))
     );
 
-    const icoBlob = createIcoBlob(images);
-    saveAs(icoBlob, "favicon.ico");
+    const icoBlob = createIcoBlob(baseImages);
+    folder.file("favicon.ico", icoBlob);
+
+    // 固定PNGアイコン
+    const fixedIcons = [
+      { size: 180, name: "apple-touch-icon.png" },
+      { size: 192, name: "icon-192.png" },
+      { size: 512, name: "icon-512.png" },
+    ];
+
+    for (const { size, name } of fixedIcons) {
+      const { blob } = await createResizedImage(file, size);
+      folder.file(name, blob);
+    }
+
+    // SVGファイルの場合
+    if (file.type === "image/svg+xml") {
+      folder.file("icon.svg", file);
+    }
+
+    // manifest.json
+    const manifest = {
+      name: "Your App Name",
+      short_name: "Short Name",
+      start_url: "/",
+      display: "standalone",
+      background_color: "#ffffff",
+      theme_color: "#000000",
+      icons: [
+        { src: "icon-192.png", type: "image/png", sizes: "192x192" },
+        { src: "icon-512.png", type: "image/png", sizes: "512x512" },
+      ],
+    };
+    folder.file("manifest.json", JSON.stringify(manifest, null, 2));
+
+    // ZIP生成と保存
+    zip.generateAsync({ type: "blob" }).then((zipFile) => {
+      saveAs(zipFile, "icons.zip");
+    });
   };
 
   const createResizedImage = (file, size) => {
@@ -101,8 +143,8 @@ const IconGenerator = () => {
           </label>
         ))}
       </div>
-      <button onClick={generateIco} className={styles.button}>
-        Generate ICO
+      <button onClick={generateAssets} className={styles.button}>
+        Generate All Icons (ZIP)
       </button>
     </div>
   );
